@@ -6,10 +6,12 @@ phases:
   build:
     commands:
       - echo "Build phase"
-      - mvn clean prepare-package war:explode
+      - mvn clean prepare-package war:exploded
   post_build:
     commands:
       - echo "Post build"
+      - mkdir -p target/deploy
+      - mv target/demo-0.0.1-SNAPSHOT.war target/deploy/
       - mv target/deploy ./
 artifacts:
   files:
